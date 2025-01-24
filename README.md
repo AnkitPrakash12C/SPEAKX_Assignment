@@ -25,6 +25,6 @@ Step 5: Creating Internet Gateways
         Internet gateway ID : igw-077189c15339b984a
         Attach to VPC : vpc-0f50ecb973c0fd3c5
         
-[image](https://github.com/user-attachments/assets/109eab15-c401-4e73-9d3b-579594f9e393)
+![image alt](https://github.com/AnkitPrakash12C/SPEAKX_Assignment/blob/5ff5d659c9490a1ac2413482ac80046e0a32fff5/VPC_Map.PNG)
 
         
