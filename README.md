@@ -27,4 +27,49 @@ Step 5: Creating Internet Gateways
         
 ![image alt](https://github.com/AnkitPrakash12C/SPEAKX_Assignment/blob/5ff5d659c9490a1ac2413482ac80046e0a32fff5/VPC_Map.PNG)
 
+Step 6: Creating Route Table
+        Name : SPEAKX_Public_RT
+        VPC : vpc-0f50ecb973c0fd3c5
+        Associate Subnets : SPEAKX_Public
+
+Step 7: Creating NAT Gateways
+        Name : SPEAKX_NG
+        Subnet : SPEAKX_Public
+        Allocate Elastic IP
+        NAT gateway ID : nat-035476974c69dbb2e
+
+Step 8: Creating EC2 instances
+        Name : SPEAKX_EC2
+        Amazon Machine Image (AMI) : Ubuntu
+        Instance type : t2.micro
+        Create new key pair : SPEAKX_Public_Secret, 
+        type : RSA, 
+        Private key file format : .pem
+        Network Settings :
+                VPC : SPEAKX
+                Subnet : SPEAKX_Public
+                Auto-assign public IP : Enable
+                Security Group Name : SPEAKX_Public_SG
+                Inbound Security Group Rules : 
+                        Add HTTP : 0.0.0.0/0 (CIDR)
+                        Add HTTPs : 0.0.0.0/0 (CIDR)
+                        
+        Instance ID : i-0e55e7d177cf12420
+        Public IPv4 address : 13.233.112.240
+
+Step 9: Edit routes in the route table
+        Add route : 0.0.0.0/0 (Destination), 
+        Internet Gateway : igw-077189c15339b984a (Target)
+
+Step 10 : Connecting to Public EC2 instance
+          Connect to instance
+          Run : chmod 400 "SPEAKX_Public_Secret.pem"
+          Run : ssh -i "SPEAKX_Public_Secret.pem" ubuntu@13.233.112.240
+
+                
+
+        
+        
+        
+
         
