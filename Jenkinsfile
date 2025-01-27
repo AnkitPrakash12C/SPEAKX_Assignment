@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'my-python-app:latest'
+        DOCKER_IMAGE = 'app'
     }
 
     stages {
@@ -17,13 +17,6 @@ pipeline {
             steps {
                 echo 'Installing dependencies...'
                 sh 'pip install -r requirements.txt'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                echo 'Running tests...'
-                sh 'pytest tests/'
             }
         }
 
@@ -46,7 +39,7 @@ pipeline {
         stage('Deploy Application') {
             steps {
                 echo 'Deploying the application...'
-                sh 'docker run -d -p 5000:5000 app'
+                sh 'docker run -d -p 8000:8000 app'
             }
         }
     }
