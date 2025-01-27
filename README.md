@@ -67,9 +67,55 @@ Step 10 : Connecting to Public EC2 instance
           Run : ssh -i "SPEAKX_Public_Secret.pem" ubuntu@13.233.112.240
 
                 
+2) App Deployment
 
-        
-        
-        
+Step 1: Pushing the application to the github repository.
 
-        
+Step 2: Creating the Docker image
+        Choose the base image: python:3.9.
+        Choosing the work directory where the source code is going to be saved.
+        Installing necessary packages for running the app.
+        Copying all the files necessary files.
+        Installing all the dependencies from the requirements.txt file (requirements.txt stores all the python depencies like kivy).
+        Writing the command to start the application.
+        Pushing the docker image to to the github repository.
+
+Step 3: Cloning the repository on our EC2 instance using git clone.
+        run the command "docker build -t app ." to build the docker container.
+        run the container using "docker run -p 8000:8000 app" [8000:8000 for port mapping]
+
+Step 3.1: Adding the inbound traffic rules in our security group of our EC2 instance to allow port 8000.
+        Edit inbound rules
+        Type : Custom TCP
+        Port range: 8000
+        CIDR : 0.0.0.0/0
+
+
+3) CI/CD Pipeline
+
+Step 1: Installing Jenkins using :
+        sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+                  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+                https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+                /etc/apt/sources.list.d/jenkins.list > /dev/null
+        sudo apt-get update
+        sudo apt-get install jenkins
+        Environment="JENKINS_PORT=8081"
+
+Step 2: Installing Java (Since, Jenkins is a Java application):
+        sudo apt update
+        sudo apt install fontconfig openjdk-17-jre
+        java -version
+        openjdk version "17.0.13" 2024-10-15
+        build 17.0.13+11-Debian-2, mixed mode, sharing
+
+Step 3: Open Jenkins on the IP adress of EC2 instance
+        using "sudo cat /var/lib/jenkins/secrets/initialAdminPassword" to get the initial password
+        Install Suggested Packages
+        Create a new Pipeline Project
+        Definition : Pipeline script for SCM
+        SCM : Git
+        Repository URL : 
+        Branch Specifier : */main
+        Script Path : 
