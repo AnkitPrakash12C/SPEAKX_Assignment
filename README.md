@@ -116,6 +116,6 @@ Step 3: Open Jenkins on the IP adress of EC2 instance
         Create a new Pipeline Project
         Definition : Pipeline script for SCM
         SCM : Git
-        Repository URL : 
+        Repository URL : https://github.com/AnkitPrakash12C/SPEAKX_Assignment
         Branch Specifier : */main
         Script Path : 
