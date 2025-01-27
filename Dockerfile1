@@ -2,11 +2,20 @@ FROM python:3.9
 
 WORKDIR /app
 
-COPY requirements.txt .
-COPY main.py .
-COPY Backend.py .
-COPY DB.py .
+RUN apt-get update && apt-get install -y xvfb\
+    libgl1-mesa-glx \
+    libgles2-mesa-dev \
+    libmtdev-dev \
+    libjpeg-dev \
+    zlib1g-dev \
+    xclip \
+    xsel \
+    && apt-get clean
+
+COPY . .
 
 RUN pip install -r requirements.txt
+
+EXPOSE 5000
 
 CMD ["python", "main.py"]
