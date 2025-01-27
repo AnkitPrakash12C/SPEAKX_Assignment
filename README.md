@@ -118,4 +118,14 @@ Step 3: Open Jenkins on the IP adress of EC2 instance
         SCM : Git
         Repository URL : https://github.com/AnkitPrakash12C/SPEAKX_Assignment
         Branch Specifier : */main
-        Script Path : 
+        Script Path : Jenkinsfile
+
+Step 3.1: Create a Jenkinsfile and push it to the repository
+
+Step 4: Install Docker plugin
+        Allow Jenkins user to access the docker socket using:
+                sudo usermod -aG docker Jenkins
+                sudo systemctl restart jenkins
+
+Step 5: Build the pipeline.
+
